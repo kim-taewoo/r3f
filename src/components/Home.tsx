@@ -1,5 +1,6 @@
 import { OrbitControls } from '@react-three/drei'
 import { Perf } from 'r3f-perf'
+import { Composer } from '../effects/Composer'
 // import { GlitchMode, BlendFunction } from 'postprocessing'
 
 export function Home() {
@@ -8,11 +9,14 @@ export function Home() {
       <color args={['#000000']} attach="background" />
 
       <Perf position="top-left" />
-
       <OrbitControls makeDefault />
 
+      {/* Lights */}
       <directionalLight castShadow position={[1, 2, 3]} intensity={4.5} />
       <ambientLight intensity={1.5} />
+
+      {/* Effects */}
+      <Composer />
 
       <mesh castShadow position-x={-2}>
         <sphereGeometry />
