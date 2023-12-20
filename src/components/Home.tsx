@@ -1,52 +1,11 @@
 import { OrbitControls } from '@react-three/drei'
 import { Perf } from 'r3f-perf'
-import { DepthOfField, Bloom, Noise, Glitch, ToneMapping, Vignette, EffectComposer } from '@react-three/postprocessing'
-import { GlitchMode, BlendFunction } from 'postprocessing'
-import Drunk from './Drunk.jsx'
-import { useRef } from 'react'
-import { useControls } from 'leva'
+// import { GlitchMode, BlendFunction } from 'postprocessing'
 
 export function Home() {
-  const drunkRef = useRef()
-
-  const drunkProps = useControls('Drunk Effect', {
-    frequency: { value: 2, min: 1, max: 20 },
-    amplitude: { value: 0.1, min: 0, max: 1 },
-  })
-
   return (
     <>
-      <color args={['#ffffff']} attach="background" />
-
-      <EffectComposer disableNormalPass>
-        {/* <Vignette
-                offset={ 0.3 }
-                darkness={ 0.9 }
-                blendFunction={ BlendFunction.NORMAL }
-            />
-            <Glitch
-                delay={ [ 0.5, 1 ] }
-                duration={ [ 0.1, 0.3 ] }
-                strength={ [ 0.2, 0.4 ] }
-                mode={ GlitchMode.CONSTANT_MILD }
-            />
-            <Noise
-                premultiply
-                blendFunction={ BlendFunction.SOFT_LIGHT }
-            />
-            <Bloom
-                mipmapBlur
-                intensity={ 0.5 }
-                luminanceThreshold={ 0 }
-            />
-            <DepthOfField
-                focusDistance={ 0.025 }
-                focalLength={ 0.025 }
-                bokehScale={ 6 }
-            /> */}
-        <Drunk ref={drunkRef} {...drunkProps} blendFunction={BlendFunction.DARKEN} />
-        <ToneMapping />
-      </EffectComposer>
+      <color args={['#000000']} attach="background" />
 
       <Perf position="top-left" />
 
