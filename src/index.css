@@ -8,3 +8,7 @@ body,
   height: 100%;
   overflow: hidden;
 }
+
+.r3f {
+  touch-action: none;
+}

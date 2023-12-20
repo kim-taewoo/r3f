@@ -6,6 +6,7 @@ function App() {
   return (
     <>
       <Canvas
+        className="r3f"
         camera={{
           fov: 45,
           near: 0.1,
