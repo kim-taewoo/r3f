@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@react-three/drei": "9.32",
-    "@react-three/fiber": "8.8",
+    "@react-three/fiber": "^8.9.0",
     "@react-three/postprocessing": "2.15",
     "@react-three/rapier": "1.1",
     "leva": "^0.9.35",
@@ -30,6 +30,7 @@
     "eslint": "^8.53.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.4",
+    "prettier": "^3.1.1",
     "typescript": "^5.2.2",
     "vite": "^5.0.0"
   }
