@@ -1,7 +1,6 @@
-import { OrbitControls } from '@react-three/drei'
+import { OrbitControls, RoundedBox } from '@react-three/drei'
 import { Perf } from 'r3f-perf'
 import { Composer } from '../effects/Composer'
-import { DoubleSide } from 'three'
 // import { GlitchMode, BlendFunction } from 'postprocessing'
 
 export function Home() {
@@ -29,10 +28,17 @@ export function Home() {
         <meshStandardMaterial color="mediumpurple" />
       </mesh>
 
-      <mesh receiveShadow position-y={-1}>
-        <boxGeometry args={[10, 0.5, 10]} />
+      <RoundedBox position-y={-1.3} receiveShadow args={[10, 0.6, 10]} radius={0.2}>
+        <meshStandardMaterial color="white" emissive="white" emissiveIntensity={1} />
+      </RoundedBox>
+      {/* <mesh receiveShadow position-y={-1}>
+        <boxGeometry args={[10, 0.3, 10]} />
         <meshStandardMaterial color="white" emissive="white" emissiveIntensity={0.5} />
-      </mesh>
+      </mesh> */}
+      {/* <mesh receiveShadow position-y={-1.4}>
+        <boxGeometry args={[10, 0.5, 10]} />
+        <meshStandardMaterial color="lightgrey" />
+      </mesh> */}
     </>
   )
 }
