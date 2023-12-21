@@ -1,12 +1,14 @@
 import { OrbitControls, RoundedBox } from '@react-three/drei'
-import { Perf } from 'r3f-perf'
+// import { Perf } from 'r3f-perf'
 import { Composer } from '../effects/Composer'
+import { Snow } from './Snow'
 // import { GlitchMode, BlendFunction } from 'postprocessing'
 
 export function Home() {
   return (
     <>
       <color args={['#000000']} attach="background" />
+      {/* <fog attach="fog" color="lightgrey" near={13} far={100} /> */}
 
       {/* <Perf position="top-left" /> */}
       <OrbitControls makeDefault />
@@ -17,6 +19,8 @@ export function Home() {
 
       {/* Effects */}
       <Composer />
+
+      {/* <Snow /> */}
 
       <mesh castShadow position-x={-2}>
         <sphereGeometry />
