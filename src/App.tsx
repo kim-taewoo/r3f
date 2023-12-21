@@ -11,7 +11,7 @@ function App() {
           fov: 45,
           near: 0.1,
           far: 200,
-          position: [8, 8, 16],
+          position: [2, 1.3, 4],
         }}
       >
         <Home />
