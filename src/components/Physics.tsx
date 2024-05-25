@@ -1,19 +1,34 @@
 import { OrbitControls } from '@react-three/drei'
 import { Perf } from 'r3f-perf'
-import { CylinderCollider, Physics, RapierRigidBody, RigidBody } from '@react-three/rapier'
-import { useRef } from 'react'
+import { CollisionEnterHandler, CylinderCollider, Physics, RapierRigidBody, RigidBody } from '@react-three/rapier'
+import { useRef, useState } from 'react'
 import { useFrame } from '@react-three/fiber'
 import * as THREE from 'three'
 
 export function PhysicsComponent() {
   const twisterRef = useRef<RapierRigidBody>(null)
   const jumpableCubeRef = useRef<RapierRigidBody>(null)
+
+  const [hitSound] = useState(() => new Audio('/hit.mp3'))
+
   useFrame(state => {
     const time = state.clock.getElapsedTime()
-    const eulerRotation = new THREE.Euler(0, time * 1, 0)
+    const eulerRotation = new THREE.Euler(0, time * 3, 0)
     const quaternionRotation = new THREE.Quaternion().setFromEuler(eulerRotation)
     twisterRef.current?.setNextKinematicRotation(quaternionRotation)
+
+    const angle = (time * 1) / 2
+    const x = Math.cos(angle)
+    const z = Math.cos(angle)
+    twisterRef.current?.setNextKinematicTranslation({ x, y: -0.8, z })
   })
+
+  const handleCollisionEnter: CollisionEnterHandler = _event => {
+    // console.log('Collision enter:', event)
+    hitSound.currentTime = 0
+    hitSound.volume = Math.random()
+    hitSound.play()
+  }
 
   function jumpCube() {
     jumpableCubeRef.current?.applyImpulse({ x: 0, y: 5, z: 0 }, true)
@@ -51,8 +66,8 @@ export function PhysicsComponent() {
           </mesh>
         </RigidBody>
 
-        <RigidBody ref={jumpableCubeRef} colliders="cuboid">
-          <mesh onPointerDown={jumpCube} castShadow position={[3, 2.5, 0]}>
+        <RigidBody onCollisionEnter={handleCollisionEnter} ref={jumpableCubeRef} colliders="cuboid">
+          <mesh onPointerDown={jumpCube} castShadow position={[2.5, 2.5, 0]}>
             <boxGeometry />
             <meshStandardMaterial color="lightblue" />
           </mesh>
