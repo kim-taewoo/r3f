@@ -5,7 +5,7 @@ import './index.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Root from './routes/Root.tsx'
 import { ErrorPage } from './pages/ErrorPage.tsx'
-import { Project } from './pages/Project.tsx'
+import { PhysicsPage } from './pages/PhysicsPage.tsx'
 
 const router = createBrowserRouter([
   {
@@ -18,8 +18,12 @@ const router = createBrowserRouter([
         element: <App />,
       },
       {
-        path: 'projects/:projectName',
-        element: <Project />,
+        path: 'projects/medal',
+        element: <App />,
+      },
+      {
+        path: 'projects/physics',
+        element: <PhysicsPage />,
       },
     ],
   },

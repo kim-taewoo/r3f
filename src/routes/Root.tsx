@@ -27,7 +27,7 @@ export default function Root() {
         </nav>
       </div>
       {/* make element to take full page width and height */}
-      <div id="detail" className="absolute top-0 left-0 w-full h-full">
+      <div id="detail" className="absolute top-0 left-0 w-full h-full flex justify-center items-center">
         <Outlet />
       </div>
     </>
