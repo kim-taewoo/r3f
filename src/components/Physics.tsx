@@ -1,7 +1,14 @@
 import { OrbitControls, useGLTF } from '@react-three/drei'
 import { Perf } from 'r3f-perf'
-import { CollisionEnterHandler, CylinderCollider, Physics, RapierRigidBody, RigidBody } from '@react-three/rapier'
-import { useRef, useState } from 'react'
+import {
+  CollisionEnterHandler,
+  CuboidCollider,
+  CylinderCollider,
+  Physics,
+  RapierRigidBody,
+  RigidBody,
+} from '@react-three/rapier'
+import { useEffect, useRef, useState } from 'react'
 import { useFrame } from '@react-three/fiber'
 import * as THREE from 'three'
 
@@ -10,6 +17,16 @@ export function PhysicsComponent() {
   const jumpableCubeRef = useRef<RapierRigidBody>(null)
 
   const [hitSound] = useState(() => new Audio('/hit.mp3'))
+
+  const cubesCount = 3
+  const cubesRef = useRef<THREE.InstancedMesh>()
+
+  useEffect(() => {
+    for (let index = 0; index < cubesCount; index++) {
+      const matrix = new THREE.Matrix4()
+      cubesRef.current?.setMatrixAt(index, matrix)
+    }
+  }, [])
 
   useFrame(state => {
     const time = state.clock.getElapsedTime()
@@ -100,6 +117,19 @@ export function PhysicsComponent() {
           <primitive object={hamburger.scene} scale={0.25} />
           <CylinderCollider args={[0.5, 1.25]} />
         </RigidBody>
+
+        <RigidBody type="fixed">
+          <CuboidCollider args={[5, 2, 0.5]} position={[0, 1, 5.5]} />
+          <CuboidCollider args={[5, 2, 0.5]} position={[0, 1, -5.5]} />
+          <CuboidCollider args={[0.5, 2, 5]} position={[5.5, 1, 0]} />
+          <CuboidCollider args={[0.5, 2, 5]} position={[-5.5, 1, 0]} />
+        </RigidBody>
+
+        {/* geometry, material 을 Null 로 우선주고 children 에서 구현 */}
+        <instancedMesh ref={cubesRef} args={[null, null, cubesCount]}>
+          <boxGeometry args={[1, 1, 1]} />
+          <meshStandardMaterial color="lightgreen" />
+        </instancedMesh>
       </Physics>
     </>
   )
