@@ -1,4 +1,4 @@
-import { OrbitControls } from '@react-three/drei'
+import { OrbitControls, useGLTF } from '@react-three/drei'
 import { Perf } from 'r3f-perf'
 import { CollisionEnterHandler, CylinderCollider, Physics, RapierRigidBody, RigidBody } from '@react-three/rapier'
 import { useRef, useState } from 'react'
@@ -42,6 +42,8 @@ export function PhysicsComponent() {
     )
   }
 
+  const hamburger = useGLTF('/hamburger.glb')
+
   return (
     <>
       <Perf position="top-left" />
@@ -66,7 +68,13 @@ export function PhysicsComponent() {
           </mesh>
         </RigidBody>
 
-        <RigidBody onCollisionEnter={handleCollisionEnter} ref={jumpableCubeRef} colliders="cuboid">
+        <RigidBody
+          onSleep={() => console.log('sleep')}
+          onWake={() => console.log('wake')}
+          onCollisionEnter={handleCollisionEnter}
+          ref={jumpableCubeRef}
+          colliders="cuboid"
+        >
           <mesh onPointerDown={jumpCube} castShadow position={[2.5, 2.5, 0]}>
             <boxGeometry />
             <meshStandardMaterial color="lightblue" />
@@ -87,6 +95,10 @@ export function PhysicsComponent() {
             <cylinderGeometry args={[5, 5, 0.5, 32]} />
             <meshStandardMaterial color="greenyellow" />
           </mesh>
+        </RigidBody>
+        <RigidBody colliders={false} position={[0, 4, 0]}>
+          <primitive object={hamburger.scene} scale={0.25} />
+          <CylinderCollider args={[0.5, 1.25]} />
         </RigidBody>
       </Physics>
     </>
