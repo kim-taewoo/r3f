@@ -1,6 +1,6 @@
 import { OrbitControls } from '@react-three/drei'
 import { Perf } from 'r3f-perf'
-import { Physics, RapierRigidBody, RigidBody } from '@react-three/rapier'
+import { CylinderCollider, Physics, RapierRigidBody, RigidBody } from '@react-three/rapier'
 import { useRef } from 'react'
 import { useFrame } from '@react-three/fiber'
 import * as THREE from 'three'
@@ -10,7 +10,7 @@ export function PhysicsComponent() {
   const jumpableCubeRef = useRef<RapierRigidBody>(null)
   useFrame(state => {
     const time = state.clock.getElapsedTime()
-    const eulerRotation = new THREE.Euler(0, time * 3, 0)
+    const eulerRotation = new THREE.Euler(0, time * 1, 0)
     const quaternionRotation = new THREE.Quaternion().setFromEuler(eulerRotation)
     twisterRef.current?.setNextKinematicRotation(quaternionRotation)
   })
@@ -38,14 +38,14 @@ export function PhysicsComponent() {
 
       <Physics debug>
         <RigidBody colliders="ball">
-          <mesh castShadow position={[-3, 3.3, 0]}>
+          <mesh castShadow position={[-3.2, 3.3, 0]}>
             <sphereGeometry />
             <meshStandardMaterial color="orange" />
           </mesh>
         </RigidBody>
 
         <RigidBody colliders="trimesh">
-          <mesh castShadow position={[-3, 1, 0]} rotation={[Math.PI * 0.5, 0, 0]}>
+          <mesh castShadow position={[-3.2, 1, 0]} rotation={[Math.PI * 0.5, 0, 0]}>
             <torusGeometry args={[1, 0.5, 16, 32]} />
             <meshStandardMaterial color="mediumpurple" />
           </mesh>
@@ -59,15 +59,17 @@ export function PhysicsComponent() {
         </RigidBody>
 
         <RigidBody ref={twisterRef} position={[0, -0.8, 0]} friction={0} type="kinematicPosition">
-          <mesh castShadow scale={[0.4, 0.4, 10]}>
+          <mesh castShadow scale={[0.4, 0.4, 3]}>
             <boxGeometry />
             <meshStandardMaterial color="lightcoral" />
           </mesh>
         </RigidBody>
 
-        <RigidBody type="fixed">
+        <RigidBody type="fixed" colliders={false}>
+          <CylinderCollider position={[0, -1.25, 0]} args={[0.25, 5]} />
           <mesh receiveShadow position-y={-1.25}>
-            <boxGeometry args={[10, 0.5, 10]} />
+            {/* <boxGeometry args={[10, 0.5, 10]} /> */}
+            <cylinderGeometry args={[5, 5, 0.5, 32]} />
             <meshStandardMaterial color="greenyellow" />
           </mesh>
         </RigidBody>
