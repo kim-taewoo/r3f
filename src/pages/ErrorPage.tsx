@@ -3,7 +3,7 @@ import { useRouteError } from 'react-router-dom'
 interface Props {}
 
 export function ErrorPage({}: Props) {
-  const error = useRouteError()
+  const error = useRouteError() as { statusText: string; message: string }
   console.error(error)
 
   return (
@@ -11,7 +11,7 @@ export function ErrorPage({}: Props) {
       <h1>Oops!</h1>
       <p>Sorry, an unexpected error has occurred.</p>
       <p>
-        <i>{error.statusText || error.message}</i>
+        <i>{error?.statusText || error?.message}</i>
       </p>
     </div>
   )

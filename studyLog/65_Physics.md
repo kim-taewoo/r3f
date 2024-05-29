@@ -58,3 +58,7 @@ Restitution 과 마찬가지로 두 RigidBody 의 Friction 값이 다르다면, 
 자동으로 계산된다. RigidBody 를 이루고 있는 Colliders 의 masses 의 총합으로. 그리고 Collider 의 mass 는 모양과 크기에 따라 또 따로 계산된다.
 
 # KinematicPosition
+
+# Matrix4
+
+position, rotation, scale 을 가지고 있는 객체. 이것을 이용해서 객체의 transformation 에 따라 vertices 를 변환시킬 수 있다.

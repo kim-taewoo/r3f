@@ -1,9 +1,11 @@
+// @ts-nocheck
+
 import { ContactShadows, Float, OrbitControls, PresentationControls, RoundedBox, Text } from '@react-three/drei'
 // import { Perf } from 'r3f-perf'
 import { Composer } from '../effects/Composer'
 // import { GlitchMode, BlendFunction } from 'postprocessing'
 
-export function Home() {
+export function ComposerComponent() {
   return (
     <>
       <color args={['#ffffff']} attach="background" />

@@ -1,6 +1,6 @@
 import './App.css'
 import { Canvas } from '@react-three/fiber'
-import { Home } from './components/Home'
+import { Home } from './components/Composer'
 
 function App() {
   return (

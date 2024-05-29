@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import { ThreeElements } from '@react-three/fiber'
 import { DepthOfField, Bloom, Noise, Glitch, ToneMapping, Vignette, EffectComposer } from '@react-three/postprocessing'
 import { useControls } from 'leva'
@@ -16,7 +18,7 @@ export function Composer({}: Props) {
   // })
 
   return (
-    <EffectComposer disableNormalPass>
+    <EffectComposer>
       {/* <Vignette offset={0.3} darkness={0.9} blendFunction={BlendFunction.NORMAL} />
       <Glitch delay={[0.5, 1]} duration={[0.1, 0.3]} strength={[0.2, 0.4]} mode={GlitchMode.CONSTANT_MILD} />
 

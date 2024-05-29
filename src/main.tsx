@@ -1,11 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App.tsx'
 import './index.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import Root from './routes/Root.tsx'
-import { ErrorPage } from './pages/ErrorPage.tsx'
-import { PhysicsPage } from './pages/PhysicsPage.tsx'
+import Root from './routes/Root'
+import { ErrorPage } from './pages/ErrorPage'
+import { PhysicsPage } from './pages/PhysicsPage'
+import { Game3DPage } from './pages/Game3DPage'
+import { HomePage } from './pages/HomePage'
 
 const router = createBrowserRouter([
   {
@@ -15,11 +16,11 @@ const router = createBrowserRouter([
     children: [
       {
         path: '',
-        element: <App />,
+        element: <HomePage />,
       },
       {
-        path: 'projects/medal',
-        element: <App />,
+        path: 'projects/3d-game',
+        element: <Game3DPage />,
       },
       {
         path: 'projects/physics',

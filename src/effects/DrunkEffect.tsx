@@ -1,7 +1,9 @@
+// @ts-nocheck
+
 import { BlendFunction, Effect } from 'postprocessing'
 import { Uniform } from 'three'
 
-const fragmentShader = /* glsl */`
+const fragmentShader = /* glsl */ `
     uniform float frequency;
     uniform float amplitude;
     uniform float time;
@@ -17,26 +19,19 @@ const fragmentShader = /* glsl */`
     }
 `
 
-export default class DrunkEffect extends Effect
-{
-    constructor({ frequency, amplitude, blendFunction = BlendFunction.DARKEN })
-    {
-        super(
-            'DrunkEffect',
-            fragmentShader,
-            {
-                blendFunction,
-                uniforms: new Map([
-                    [ 'frequency', new Uniform(frequency) ],
-                    [ 'amplitude', new Uniform(amplitude) ],
-                    [ 'time', new Uniform(0) ]
-                ])
-            }
-        )
-    }
+export default class DrunkEffect extends Effect {
+  constructor({ frequency, amplitude, blendFunction = BlendFunction.DARKEN }) {
+    super('DrunkEffect', fragmentShader, {
+      blendFunction,
+      uniforms: new Map([
+        ['frequency', new Uniform(frequency)],
+        ['amplitude', new Uniform(amplitude)],
+        ['time', new Uniform(0)],
+      ]),
+    })
+  }
 
-    update(renderer, inputBuffer, deltaTime)
-    {
-        this.uniforms.get('time').value += deltaTime
-    }
+  update(renderer, inputBuffer, deltaTime) {
+    ;(this.uniforms.get('time') ?? { value: 0 }).value += deltaTime
+  }
 }
