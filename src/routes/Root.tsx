@@ -9,6 +9,7 @@ export default function Root() {
           <Link to="/">Home</Link>
           <Link to="projects/physics">Physics</Link>
           <Link to="projects/3d-game">3D Game</Link>
+          <Link to="projects/2d-game">2D Game</Link>
         </nav>
       </div>
       {/* make element to take full page width and height */}

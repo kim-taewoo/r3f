@@ -6,6 +6,7 @@ import Root from './routes/Root'
 import { ErrorPage } from './pages/ErrorPage'
 import { PhysicsPage } from './pages/PhysicsPage'
 import { Game3DPage } from './pages/Game3DPage'
+import { Game2DPage } from './pages/Game2DPage'
 import { HomePage } from './pages/HomePage'
 
 const router = createBrowserRouter([
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
       {
         path: 'projects/physics',
         element: <PhysicsPage />,
+      },
+      {
+        path: 'projects/2d-game',
+        element: <Game2DPage />,
       },
     ],
   },

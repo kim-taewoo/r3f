@@ -13,6 +13,9 @@ export function HomePage() {
           <Link to="/projects/3d-game">
             <button className="p-2 bg-blue-500 text-white rounded-md">3D Game</button>
           </Link>
+          <Link to="/projects/2d-game">
+            <button className="p-2 bg-blue-500 text-white rounded-md">2D Game</button>
+          </Link>
         </div>
       </div>
     </div>
